@@ -75,7 +75,7 @@ import {
         </div>
       </div>
       <div class="md-steppers-content">
-        <ng-content select="ngx-step"></ng-content>
+        <ng-content></ng-content>
       </div>
       <div class="md-steppers-overlay"></div>
     </div>
@@ -103,8 +103,8 @@ export class NgxStepperComponent implements OnInit {
   public hasFeedback: boolean;
   public feedbackMessage: string;
 
-  constructor(private _ngxStepperService: NgxStepperService) {
-    this._ngxStepperService.isInitStepCmp.subscribe((step: NgxStepComponent) => {
+  constructor(private ngxStepperService: NgxStepperService) {
+    this.ngxStepperService.isInitStepCmp.subscribe((step: NgxStepComponent) => {
       step.stepNumber = this.addStep(step);
     });
   }
@@ -119,7 +119,7 @@ export class NgxStepperComponent implements OnInit {
     if (this.options.alternative === undefined) {
       this.options.alternative = true;
     }
-    this._ngxStepperService.isInitStepperCmp.next(this);
+    this.ngxStepperService.isInitStepperCmp.next(this);
   }
 
   /**
